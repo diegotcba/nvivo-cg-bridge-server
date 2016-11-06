@@ -12,16 +12,16 @@ var messages = [];
 
 io.on('connection', function(socket) {
   console.log('Alguien se ha conectado con Sockets');
-  // socket.emit('messages', messages);
-  //
-  // socket.on('new-message', function(data) {
-  //   var objeto = JSON.parse(data);
-  //   console.log(objeto);
-  //   //messages = objeto;
-  //   //messages.push(objeto);
-  //
-  //   io.sockets.emit('messages', objeto);
-  //});
+  //socket.emit('messages', messages);
+
+  socket.on('messages', function(data) {
+    var objeto = JSON.parse(data);
+    console.log(objeto);
+    //messages = objeto;
+    //messages.push(objeto);
+
+    io.sockets.emit('messages', objeto);
+  });
 });
 
 server.listen(4040, function() {
